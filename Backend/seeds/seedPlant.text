@@ -1,0 +1,221 @@
+const Models = require("../models");
+
+const data = [
+  {
+    name: "Bougainvillea",
+    description: "flowering, woody vine-like shrub",
+    image: "",
+    type: "shrub",
+    sunExposure: "full sun",
+    season: "Fall",
+    moistureLevel: "dry",
+    zone: ["9","10","11"],
+    indoor:"false",
+    outdoor: "true",
+    toxic: "false",
+    width: "40 feet",
+    height: "20 feet",
+    flowering: "true",
+  },
+  {
+    name: "Sunshine Ligustrum",
+    description: "Evergreen shrub with year round golden foliage",
+    image: "",
+    type: "shrub",
+    sunExposure: "6-12",
+    sunExposure: "full",
+    season: ["spring", "fall"],
+    moistureLevel: "moist",
+    zone: ["5", "6", "7", "8", "9", "10"],
+    indoor: "false",
+    outdoor: "true",
+    toxic: "true",
+    width: "10 feet",
+    height: "15 feet",
+    flowering: "false",
+  },
+  {
+    name: "Magnolia",
+    description: "evergreen leaves with seasonal blooming",
+    image: "",
+    type: "tree",
+    sunExposure: "full sun",
+    season: "summer",
+    moistureLevel: "damp",
+    zone: ["7", "8", "9", "10"],
+    indoor: "false",
+    outdoor: "true",
+    toxic: "false",
+    width: "40 feet",
+    height: "80 feet",
+    flowering: "true",
+  },
+  // {
+  //   name: "",
+  //   description: "",
+  //   image: "",
+  //   type: "",
+  //   sunExposure: "",
+  //   season: "",
+  //   moistureLevel: "",
+  //   zone: "",
+  //   indoor: "",
+  //   outdoor: "",
+  //   toxic: "",
+  //   width: "",
+  //   height: "",
+  //   flowering: "",
+  // },
+  // {
+  //   name: "",
+  //   description: "",
+  //   image: "",
+  //   type: "",
+  //   sunExposure: "",
+  //   season: "",
+  //   moistureLevel: "",
+  //   zone: "",
+  //   indoor: "",
+  //   outdoor: "",
+  //   toxic: "",
+  //   width: "",
+  //   height: "",
+  //   flowering: "",
+  // },
+  // {
+  //   name: "",
+  //   description: "",
+  //   image: "",
+  //   type: "",
+  //   sunExposure: "",
+  //   season: "",
+  //   moistureLevel: "",
+  //   zone: "",
+  //   indoor: "",
+  //   outdoor: "",
+  //   toxic: "",
+  //   width: "",
+  //   height: "",
+  //   flowering: "",
+  // },
+  // {
+  //   name: "",
+  //   description: "",
+  //   image: "",
+  //   type: "",
+  //   sunExposure: "",
+  //   season: "",
+  //   moistureLevel: "",
+  //   zone: "",
+  //   indoor: "",
+  //   outdoor: "",
+  //   toxic: "",
+  //   width: "",
+  //   height: "",
+  //   flowering: "",
+  // },
+  // {
+  //   name: "",
+  //   description: "",
+  //   image: "",
+  //   type: "",
+  //   sunExposure: "",
+  //   season: "",
+  //   moistureLevel: "",
+  //   zone: "",
+  //   indoor: "",
+  //   outdoor: "",
+  //   toxic: "",
+  //   width: "",
+  //   height: "",
+  //   flowering: "",
+  // },
+  // {
+  //   name: "",
+  //   description: "",
+  //   image: "",
+  //   type: "",
+  //   sunExposure: "",
+  //   season: "",
+  //   moistureLevel: "",
+  //   zone: "",
+  //   indoor: "",
+  //   outdoor: "",
+  //   toxic: "",
+  //   width: "",
+  //   height: "",
+  //   flowering: "",
+  // },
+  // {
+  //   name: "",
+  //   description: "",
+  //   image: "",
+  //   type: "",
+  //   sunExposure: "",
+  //   season: "",
+  //   moistureLevel: "",
+  //   zone: "",
+  //   indoor: "",
+  //   outdoor: "",
+  //   toxic: "",
+  //   width: "",
+  //   height: "",
+  //   flowering: "",
+  // },
+];
+
+
+
+
+
+
+const seedPlant = async () => {
+  
+  if (getPlant[0].length === 1) return;
+  for (let i = 0; i < plantData.length; ++i) {
+    let plant = new Plant({
+      name: plantData[i].name,
+      description: plantData[i].description,
+      image_url: plantData[i].image,
+      type: plantData[i].type,
+      sun_exposure: plantData[i].sunExposure,
+      season: plantData[i].season,
+      moisture_level: plantData[i].moistureLevel,
+      zone: plantData[i].zone,
+      is_indoor: plantData[i].indoor == "true",
+      is_outdoor: plantData[i].outdoor === "true" ? false : true,
+      has_toxicity: plantData[i].toxic === "true",
+      width: plantData[i].width,
+      height: plantData[i].height,
+      
+      can_grow_flowers: plantData[i].flowering === "true" ? false : true,
+    });
+
+    for await (const element of data) {
+      const newPlantData = { ...element };
+      try {
+        let plant = Plant.create(newPlantData);
+        console.log(`Added ${plant}`);
+      } catch (err) {
+        if (!err || err?.name !== "SequelizeUniqueConstraintError") throw Error;
+      }
+      }
+    //   const getPlant = (res) => {
+    //     Models.Plant.findAll({
+    //       where: {
+    //         type: "9a", // main search param
+    //         [Op.or]: [{ sun_exposure: "1-3" }, { sun_exposure: "3-6" }],
+    //       }
+    //         .then((data) => {
+    //           res.send({ result: 200, data: data });
+    //         })
+    //         .catch((err) => {
+    //           console.log("Error:", err);
+    //           throw err;
+    //         }),
+    //     });
+    //   };
+    }
+};
+
+module.exports = {seedPlant};
