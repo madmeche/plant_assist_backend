@@ -3,8 +3,20 @@ const app = express();
 
 require("dotenv").config();
 
-let dbconnect = require('./dbConnect')
+let dbconnect = require('./dbConnect');
 
+const Models = require('./models');
+// const Seeds = require('./seeds');
+
+
+async function init() {
+    await Models.User.sync();
+    await Models.Plant.sync();
+    await Models.Folder.sync()
+    await Models.Favorite.sync()
+    await Models.Recent.sync()
+  } 
+  init();
 
 const authRoutes = require('./routes/authRoutes')
 const userRoutes = require('./routes/userRoutes')
@@ -13,7 +25,6 @@ const folderRoutes = require('./routes/foldersRoutes')
 const favoritesRoutes = require('./routes/favoritesRoutes')
 
 // const seedPlant = require('./seeds/seedPlant')
-
 // seedPlant.seedPlant()
 
 app.use(function (req, res, next) {

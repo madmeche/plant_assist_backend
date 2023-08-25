@@ -6,15 +6,15 @@ const Folder = require('./folder');
 const Favorite = require('./favorite')
 const Recent = require('./recents')
 
-async function init() {
-  await User.sync();
-  await Plant.sync();
-  await Folder.sync()
-  await Favorite.sync()
-  await Recent.sync()
-}
+// async function init() {
+//   await User.sync();
+//   await Plant.sync();
+//   await Folder.sync()
+//   await Favorite.sync()
+//   await Recent.sync()
+// }
 
-init();
+// init();
 
 module.exports = {
   User,
